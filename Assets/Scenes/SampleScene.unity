@@ -281,7 +281,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 5453392138209390210, guid: cc8e9b9b18463361395986247e4db697,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -336,6 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1625884415}
+  spwonPoint1: {fileID: 1995723406}
+  spwonPoint2: {fileID: 1459762162}
 --- !u!1 &1083806590
 GameObject:
   m_ObjectHideFlags: 0
