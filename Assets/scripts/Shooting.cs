@@ -7,9 +7,11 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
     public GameObject spwonPoint1;
     public GameObject spwonPoint2;
+    public GameObject flash;
     void Start()
     {
         StartCoroutine(Shoot());
+        flash.SetActive(false);
 
     }
     // Update is called once per frame
@@ -28,7 +30,11 @@ public class Shooting : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(2);
+            flash.SetActive(true);
             fire();
+            yield return new WaitForSeconds(0.07f);
+            flash.SetActive(false);
+
 
         }
 
