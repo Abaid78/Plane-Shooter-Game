@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject gunPoint2;
     public GameObject enemyBullet;
     public GameObject enemyFlash;
+    public GameObject damageVFXPrefab;
     public GameObject enemyExplosionPrefab;
     public Healthbar healthbar;
     float health = 10f;
@@ -27,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     {
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
+    // Damage Enemy and Decrease healthbar scale
     void HealthBarDamage()
     {
         if (health > 0)
@@ -54,12 +56,16 @@ public class EnemyScript : MonoBehaviour
         }
 
     }
+    //Detacting Colliders
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "PlayerBullet")
         {
+
             HealthBarDamage();
             Destroy(other.gameObject);
+            GameObject damageVFX=Instantiate(damageVFXPrefab,other.transform.position,Quaternion.identity);
+            Destroy(damageVFX,0.06f);
             if (health <= 0)
             {
                 Destroy(gameObject);
