@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public GameObject gunPoint1;
-    public GameObject gunPoint2;
+    public Transform []gunPoints;
     public GameObject enemyBullet;
     public GameObject enemyFlash;
     public GameObject damageVFXPrefab;
     public GameObject enemyExplosionPrefab;
     public Healthbar healthbar;
+    public float shootTime=1f;
     float health = 10f;
     float barSize = 1f;
     float damage;
@@ -41,14 +41,15 @@ public class EnemyScript : MonoBehaviour
     }
     void EnemyFire()
     {
-        Instantiate(enemyBullet, gunPoint1.transform.position, Quaternion.identity);
-        Instantiate(enemyBullet, gunPoint2.transform.position, Quaternion.identity);
+        for(int i=0;i<gunPoints.Length;i++)
+        Instantiate(enemyBullet, gunPoints[i].transform.position, Quaternion.identity);
+        
     }
     IEnumerator EnemyShooting()
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(shootTime);
             EnemyFire();
             enemyFlash.SetActive(true);
             yield return new WaitForSeconds(0.07f);

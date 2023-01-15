@@ -14,12 +14,6 @@ public class Shooting : MonoBehaviour
         flash.SetActive(false);
 
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
     void fire()
     {
         Instantiate(bullet, spwonPoint1.transform.position, Quaternion.identity);
@@ -29,7 +23,7 @@ public class Shooting : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.4f);
             flash.SetActive(true);
             fire();
             yield return new WaitForSeconds(0.07f);
