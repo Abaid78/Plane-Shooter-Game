@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject enemyFlash;
     public GameObject damageVFXPrefab;
     public GameObject enemyExplosionPrefab;
+    public GameObject coinPrefab;
     public Healthbar healthbar;
     public float shootTime=1f;
     float health = 10f;
@@ -70,6 +71,7 @@ public class EnemyScript : MonoBehaviour
             if (health <= 0)
             {
                 Destroy(gameObject);
+                Instantiate(coinPrefab,transform.position,Quaternion.identity);
                 GameObject enemyExplosion = Instantiate(enemyExplosionPrefab, transform.position, Quaternion.identity);
                 Destroy(enemyExplosion, 0.25f);
             }

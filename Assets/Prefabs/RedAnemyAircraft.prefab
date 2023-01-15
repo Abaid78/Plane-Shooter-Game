@@ -274,6 +274,8 @@ MonoBehaviour:
     type: 3}
   enemyExplosionPrefab: {fileID: 2235827778828126824, guid: 5b956750d9a122bc082498d91fdfe0ae,
     type: 3}
+  coinPrefab: {fileID: 7006271675079008525, guid: 8c5840b42e390f4d780aef14d4ec335c,
+    type: 3}
   healthbar: {fileID: 8376167846108411369}
   shootTime: 0.8
 --- !u!68 &8518831528245711578

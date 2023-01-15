@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public GameObject playerExplosion;
     public PlayerHealthBar playerHealthBar;
     public GameObject damageVFXPrefab;
+    public CoinCounter coinCounter;
     public float speed = 10f;
     float minX;
     float maxX;
@@ -25,15 +26,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ///Player Movement using Input Manager
-        //Horizontal Movement(Left Right)
-        float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float newXpos = Mathf.Clamp(transform.position.x + deltaX, minX, maxX);
-        transform.position = new Vector2(newXpos, transform.position.y);
-        //Vertical Movement(UP and Down)
-        float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-        float newYpos = Mathf.Clamp(transform.position.y + deltaY, minY, maxY);
-        transform.position = new Vector2(newXpos, newYpos);
+        // ///Player Movement using Input Manager
+        // //Horizontal Movement(Left Right)
+        // float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        // float newXpos = Mathf.Clamp(transform.position.x + deltaX, minX, maxX);
+        // transform.position = new Vector2(newXpos, transform.position.y);
+        // //Vertical Movement(UP and Down)
+        // float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        // float newYpos = Mathf.Clamp(transform.position.y + deltaY, minY, maxY);
+        // transform.position = new Vector2(newXpos, newYpos);
+
+        if(Input.GetMouseButton(0)){
+            Vector2 newPos=Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
+            transform.position=Vector2.Lerp(transform.position,newPos,10*Time.deltaTime);
+        }
     }
     void FindBoundries()
     {
@@ -60,6 +66,10 @@ public class Player : MonoBehaviour
                 Destroy(gameObject);
             }
 
+        }
+        if(other.gameObject.tag=="Coin"){
+            Destroy(other.gameObject);
+            coinCounter.AddCoins();
         }
     }
     // Damage the Player and Decrease the barFillAmount of the bar
