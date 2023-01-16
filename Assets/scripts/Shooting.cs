@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     public GameObject spwonPoint1;
     public GameObject spwonPoint2;
     public GameObject flash;
+    public AudioSource audioSource;
     void Start()
     {
         StartCoroutine(Shoot());
@@ -26,6 +27,7 @@ public class Shooting : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
             flash.SetActive(true);
             fire();
+            audioSource.Play();
             yield return new WaitForSeconds(0.07f);
             flash.SetActive(false);
 

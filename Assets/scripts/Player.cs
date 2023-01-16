@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public GameObject damageVFXPrefab;
     public GameController gameController;
     public CoinCounter coinCounter;
+    public AudioSource audioSource;
+    public AudioClip damageSound;
+    public AudioClip explosionSound;
+    public AudioClip coinSound;
     public float speed = 10f;
     float minX;
     float maxX;
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
+            audioSource.PlayOneShot(damageSound,0.4f);
             GameObject damageVFX=Instantiate(damageVFXPrefab,other.transform.position,Quaternion.identity);
             Destroy(damageVFX,0.06f);
             Destroy(other.gameObject);
@@ -66,12 +71,14 @@ public class Player : MonoBehaviour
                 Destroy(blast, 2f);
                 Destroy(gameObject);
                 gameController.GameOver();
+                AudioSource.PlayClipAtPoint(explosionSound,Camera.main.transform.position,0.4f);
             }
 
         }
         if(other.gameObject.tag=="Coin"){
             Destroy(other.gameObject);
             coinCounter.AddCoins();
+            audioSource.PlayOneShot(coinSound,0.5f);
         }
     }
     // Damage the Player and Decrease the barFillAmount of the bar
