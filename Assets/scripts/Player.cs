@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public GameObject playerExplosion;
     public PlayerHealthBar playerHealthBar;
     public GameObject damageVFXPrefab;
+    public GameController gameController;
     public CoinCounter coinCounter;
     public float speed = 10f;
     float minX;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
                 GameObject blast = Instantiate(playerExplosion, transform.position, Quaternion.identity);
                 Destroy(blast, 2f);
                 Destroy(gameObject);
+                gameController.GameOver();
             }
 
         }
