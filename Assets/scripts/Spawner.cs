@@ -5,6 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] enemy;
+    public int enemySpawnCount=10;
+    public GameController gameController;
+    private bool lastEnemySpawned=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +17,9 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(lastEnemySpawned&&FindObjectOfType<EnemyScript>()==null){
+            StartCoroutine(gameController.LevelComplete());
+        }
     }
     public void SpawnEnemy()
     {
@@ -24,10 +29,11 @@ public class Spawner : MonoBehaviour
     }
     IEnumerator EnemySpawner()
     {
-        while (true)
+        for(int i=0;i<enemySpawnCount;i++)
         {
             yield return new WaitForSeconds(3);
             SpawnEnemy();
         }
+        lastEnemySpawned=true;
     }
 }

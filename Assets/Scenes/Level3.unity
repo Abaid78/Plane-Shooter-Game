@@ -739,7 +739,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level2
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &513499021
@@ -1281,7 +1281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &930747256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1852,8 +1852,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
+  - {fileID: 7852718006022313085, guid: 561a2d05dd229b3d39133bdcad618011, type: 3}
   - {fileID: 3178198476871247398, guid: 1ec5ff1b1750838df9c55f2b8ba3629b, type: 3}
-  enemySpawnCount: 3
+  - {fileID: 8518831528245711572, guid: 1e118159565870394902da819dd97c4a, type: 3}
+  enemySpawnCount: 5
   gameController: {fileID: 47208437}
 --- !u!1 &1140760531
 GameObject:
@@ -2425,7 +2427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1335325014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3525,11 +3527,6 @@ PrefabInstance:
     - target: {fileID: 1376460176992230247, guid: eda179f815935d6b9a69ff9a2511030e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376460176992230266, guid: eda179f815935d6b9a69ff9a2511030e,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1376460176992230266, guid: eda179f815935d6b9a69ff9a2511030e,

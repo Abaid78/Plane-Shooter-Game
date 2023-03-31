@@ -351,6 +351,12 @@ MonoBehaviour:
   playerHealthBar: {fileID: 0}
   damageVFXPrefab: {fileID: 1574354804846901903, guid: c7d03400997695acaa047aab853119e3,
     type: 3}
+  gameController: {fileID: 0}
+  coinCounter: {fileID: 0}
+  audioSource: {fileID: 0}
+  damageSound: {fileID: 0}
+  explosionSound: {fileID: 0}
+  coinSound: {fileID: 0}
   speed: 10
 --- !u!114 &1376460176992230266
 MonoBehaviour:
@@ -368,6 +374,7 @@ MonoBehaviour:
   spwonPoint1: {fileID: 1376460175880703845}
   spwonPoint2: {fileID: 1376460175348674073}
   flash: {fileID: 1376460176865654780}
+  audioSource: {fileID: 0}
 --- !u!68 &1376460176992230265
 EdgeCollider2D:
   m_ObjectHideFlags: 0

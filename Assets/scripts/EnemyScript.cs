@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject enemyFlash;
     public GameObject damageVFXPrefab;
     public GameObject enemyExplosionPrefab;
+    
     public GameObject coinPrefab;
     public Healthbar healthbar;
     
