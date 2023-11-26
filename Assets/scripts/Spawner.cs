@@ -1,39 +1,42 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject[] enemy;
-    public int enemySpawnCount=10;
-    public GameController gameController;
-    private bool lastEnemySpawned=false;
+    public float totalEnemyToSpawn = 10;
+    public UIManager gameController;
+    private bool lastEnemySpawned = false;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(EnemySpawner());
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(lastEnemySpawned&&FindObjectOfType<EnemyScript>()==null){
-            StartCoroutine(gameController.LevelComplete());
+        if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null)
+        {
+            gameController.ShowOnLevelComplete();
         }
     }
+
     public void SpawnEnemy()
     {
         int randomValue = Random.Range(0, enemy.Length);
         int randomXpos = Random.Range(-2, 2);
         Instantiate(enemy[randomValue], new Vector2(randomXpos, transform.position.y), Quaternion.identity);
     }
-    IEnumerator EnemySpawner()
+
+    private IEnumerator EnemySpawner()
     {
-        for(int i=0;i<enemySpawnCount;i++)
+        for (int i = 0; i < totalEnemyToSpawn; i++)
         {
             yield return new WaitForSeconds(3);
             SpawnEnemy();
         }
-        lastEnemySpawned=true;
+        lastEnemySpawned = true;
     }
 }

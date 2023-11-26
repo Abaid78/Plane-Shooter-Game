@@ -1,20 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("UI Panels")]
+    public GameObject mainManuePanel;
+
     public GameObject shopPanel;
     public GameObject settingPanel;
-    public GameObject mainManuePanel;
     public GameObject healthMarket;
     public GameObject planeMarket;
     public GameObject coinsMakret;
+    public GameObject levelSelections;
+
+    [Header("Canvas Groups")]
+    public CanvasGroup shopPanelCG;
+    public CanvasGroup settingPanelCG;
+    public CanvasGroup healthMarketCG;
+    public CanvasGroup planeMarketCG;
+    public CanvasGroup coinsMarketCG;
+    public CanvasGroup levelSelectionCG;
+
+    [Header("Other Components")]
+    public UIAnimations uiAnimations;
     public Button showHealthMarketBtn;
     public Button showPlaneMarketBtn;
     public Button showCoinsMarketBtn;
+
+    [Header("Animation Settings")]
+    public float animDuration = 0.4f;
 
     private enum MarketType
     {
@@ -24,101 +38,118 @@ public class UIController : MonoBehaviour
     }
 
     private MarketType currentMarket;
-    void Start()
+
+    private void OnEnable()
     {
         shopPanel.SetActive(false);
-        settingPanel.SetActive(false);
+        settingPanel.gameObject.SetActive(false);
         mainManuePanel.SetActive(true);
+        levelSelections.SetActive(false);
         // Initialize the starting market
         currentMarket = MarketType.HealthMarket;
         UpdateMarketDisplay();
     }
 
     //Shop
-    public void OpenShop()
+    public async void OpenShop()
     {
         shopPanel.SetActive(true);
-
+        await uiAnimations.FadeIn(shopPanelCG, animDuration);
     }
-    public void CloseShop()
+
+    public async void CloseShop()
     {
+        await uiAnimations.FadeOut(shopPanelCG, animDuration);
         shopPanel.SetActive(false);
     }
+
     public void OpenHealthMarket()
     {
         currentMarket = MarketType.HealthMarket;
         UpdateMarketDisplay();
     }
+
     public void OpenPlaneMarket()
     {
         currentMarket = MarketType.PlaneMarket;
         UpdateMarketDisplay();
     }
-    public void OpenCoinsMarket(){
-        currentMarket=MarketType.CoinsMarket;
+
+    public void OpenCoinsMarket()
+    {
+        currentMarket = MarketType.CoinsMarket;
         UpdateMarketDisplay();
     }
-    private void UpdateMarketDisplay()
+
+    private async void UpdateMarketDisplay()
     {
         // Disable  markets
         healthMarket.SetActive(false);
+        healthMarketCG.alpha = 0;
         planeMarket.SetActive(false);
+        planeMarketCG.alpha = 0;
         coinsMakret.SetActive(false);
+        coinsMarketCG.alpha = 0;
         
 
         if (currentMarket == MarketType.HealthMarket)
         {
             healthMarket.SetActive(true);
-
-
+            await uiAnimations.FadeIn(healthMarketCG, animDuration);
         }
         else if (currentMarket == MarketType.PlaneMarket)
         {
             planeMarket.SetActive(true);
-
-        }else if(currentMarket==MarketType.CoinsMarket){
-            coinsMakret.SetActive(true);
+            await uiAnimations.FadeIn(planeMarketCG, animDuration);
         }
-            //Change buttons Colors
+        else if (currentMarket == MarketType.CoinsMarket)
+        {
+            coinsMakret.SetActive(true);
+            await uiAnimations.FadeIn(coinsMarketCG, animDuration);
+        }
+        //Change buttons Colors
         if (currentMarket == MarketType.PlaneMarket)
         {
-
-            showPlaneMarketBtn.image.color = Color.green;
+            showPlaneMarketBtn.image.color = Color.cyan;
         }
-        else
+        else if(currentMarket==MarketType.HealthMarket)
         {
-            showPlaneMarketBtn.image.color = Color.white;
+            
+            showHealthMarketBtn.image.color = Color.cyan;
         }
-        if (currentMarket == MarketType.HealthMarket)
+        else if (currentMarket == MarketType.CoinsMarket)
         {
-
-            showHealthMarketBtn.image.color = Color.green;
-        }
-        else
-        {
-            showHealthMarketBtn.image.color = Color.white;
-        }
-         if (currentMarket == MarketType.CoinsMarket)
-        {
-
-            showCoinsMarketBtn.image.color = Color.green;
-        }
-        else
-        {
-            showCoinsMarketBtn.image.color = Color.white;
+            showCoinsMarketBtn.image.color = Color.cyan;
         }
     }
 
     //Settings
-    public void OpenSettings()
+    public async void OpenSettings()
     {
-        settingPanel.SetActive(true);
-    }
-    public void CloseSettings()
-    {
-        settingPanel.SetActive(false);
+        settingPanel.gameObject.SetActive(true);
+        await uiAnimations.FadeIn(settingPanelCG, animDuration);
     }
 
+    public async void CloseSettings()
+    {
+        await uiAnimations.FadeOut(settingPanelCG, animDuration);
+        settingPanel.gameObject.SetActive(false);
+    }
 
+    public async void CloseLevelselections()
+    {
+        await uiAnimations.FadeOut(levelSelectionCG, animDuration);
+        levelSelections.SetActive(false);
+    }
+    //open level sellections
+    public async void Play()
+    {
+        levelSelections.SetActive(true);
+        await uiAnimations.FadeIn(levelSelectionCG, animDuration);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
-

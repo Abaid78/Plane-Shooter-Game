@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e5b473d5927ee4ebd64ad90e8bfce3, type: 3}
+  m_Name: SaveData
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 3178198476871247398, guid: 1ec5ff1b1750838df9c55f2b8ba3629b, type: 3}
+  - {fileID: 5485818913120547328, guid: eda179f815935d6b9a69ff9a2511030e, type: 3}
+  listIndex: 0
+  coins: 1236
+  health: 0
+  autoFire: 0
+  isPurchased: 0000
+  isSelected: 1
+  selectButtonText: Selected
+  planePriceText: You have perchased
+  selectedLevelIndex: 1
+  LevelProgressFill:
+  - 0.75
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  unLocked: 01010000000000000000
+  unLockText: UNLOCK

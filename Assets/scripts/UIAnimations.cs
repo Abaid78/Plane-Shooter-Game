@@ -1,31 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIAnimations : MonoBehaviour
 {
-    public float animationDuration = 1.0f;
-    public GameObject shopPanel;
-    public CanvasGroup canvasGroup;
-    public LeanTweenType leanTweenType;
-    // Start is called before the first frame update
-    void Start()
+    public async Task FadeIn(CanvasGroup canvasGroup, float animDuration)
     {
-      
-
-
+        await canvasGroup.DOFade(1, animDuration).SetUpdate(true).AsyncWaitForCompletion();
     }
-    public void am()
+
+    public async Task FadeOut(CanvasGroup canvasGroup, float animDuration)
     {
-        canvasGroup.alpha = 0f;
-
-        // Use LeanTween to fade in the panel
-        LeanTween.alphaCanvas(canvasGroup, 1.0f, animationDuration)
-            .setEase(leanTweenType);
-        shopPanel.gameObject.SetActive(true);
+        await canvasGroup.DOFade(0, animDuration).SetUpdate(true).AsyncWaitForCompletion();
     }
-    public void FadeOutAnimation(){
-        
+
+    public async Task FadeIn(CanvasGroup canvasGroup, float animDuration, float delayTime)
+    {
+        await canvasGroup.DOFade(1, animDuration).SetUpdate(true).SetDelay(delayTime).AsyncWaitForCompletion();
+    }
+
+    public async Task FadeOut(CanvasGroup canvasGroup, float animDuration, float delayTime)
+    {
+        await canvasGroup.DOFade(0, animDuration).SetUpdate(true).SetDelay(delayTime).AsyncWaitForCompletion();
+    }
+
+    public void Shake(RectTransform obj)
+    {
+        obj.DOShakePosition(0.5f, new Vector3(10, 10, 0), 10, 10, true)
+          .SetLoops(2) // Loops indefinitely, restarting from the beginning each time
+          .SetEase(Ease.InOutQuad);
     }
 }

@@ -1,35 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
     public GameObject playerExplosion;
-    public PlayerHealthBar playerHealthBar;
+    public PlayerHealth playerHealth;
     public GameObject damageVFXPrefab;
-    public GameController gameController;
+    public UIManager uiManager;
     public CoinCounter coinCounter;
     public AudioSource audioSource;
     public AudioClip damageSound;
     public AudioClip explosionSound;
     public AudioClip coinSound;
     public float speed = 10f;
-    float minX;
-    float maxX;
-    float minY;
-    float maxY;
-    float health = 20f;
-    float damage = 0;
-    float barFillAmount = 1f;
+
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        damage = barFillAmount / health;
+        playerHealth = GameObject.Find("PlayerHealth").GetComponent<PlayerHealth>();
+        coinCounter = GameObject.Find("CoinCounter").GetComponent<CoinCounter>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
+        //FindReferences();
         FindBoundries();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // ///Player Movement using Input Manager
         // //Horizontal Movement(Left Right)
@@ -40,13 +42,32 @@ public class Player : MonoBehaviour
         // float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
         // float newYpos = Mathf.Clamp(transform.position.y + deltaY, minY, maxY);
         // transform.position = new Vector2(newXpos, newYpos);
+        if (Input.GetMouseButton(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                Vector2 newPos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                transform.position = Vector2.Lerp(transform.position, newPos, 10 * Time.deltaTime);
+            }
+        }
 
-        if(Input.GetMouseButton(0)){
-            Vector2 newPos=Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
-            transform.position=Vector2.Lerp(transform.position,newPos,10*Time.deltaTime);
+        // Use touch input for Android and iOS builds
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0); // Get the first touch (you may need to modify this based on your requirements)
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    Vector2 newPos = Camera.main.ScreenToWorldPoint(touch.position);
+                    transform.position = Vector2.Lerp(transform.position, newPos, 10 * Time.deltaTime);
+                }
+            }
         }
     }
-    void FindBoundries()
+
+    private void FindBoundries()
     {
         Camera gameCamera = Camera.main;
         //convert position Viewport to WorldPoint
@@ -54,42 +75,68 @@ public class Player : MonoBehaviour
         maxX = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - 0.8f;
         minY = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + 0.7f;
         maxY = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - 0.7f;
-
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
-            audioSource.PlayOneShot(damageSound,0.4f);
-            GameObject damageVFX=Instantiate(damageVFXPrefab,other.transform.position,Quaternion.identity);
-            Destroy(damageVFX,0.06f);
+            audioSource.PlayOneShot(damageSound, 0.4f);
+            GameObject damageVFX = Instantiate(damageVFXPrefab, other.transform.position, Quaternion.identity);
+            Destroy(damageVFX, 0.06f);
             Destroy(other.gameObject);
-            PlayerDamage();
-            if (health <= 0)
+            playerHealth.PlayerDamage();
+            if (playerHealth.currentHealth <= 0)
             {
+               
                 GameObject blast = Instantiate(playerExplosion, transform.position, Quaternion.identity);
                 Destroy(blast, 2f);
                 Destroy(gameObject);
-                gameController.GameOver();
-                AudioSource.PlayClipAtPoint(explosionSound,Camera.main.transform.position,0.4f);
+                AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.4f);
+                uiManager.ShowOnGameOver();
             }
-
         }
-        if(other.gameObject.tag=="Coin"){
-            Destroy(other.gameObject);
+        if (other.gameObject.tag == "Coin")
+        {
             coinCounter.AddCoins();
-            audioSource.PlayOneShot(coinSound,0.5f);
+            Destroy(other.gameObject);
+            audioSource.PlayOneShot(coinSound, 0.5f);
         }
     }
-    // Damage the Player and Decrease the barFillAmount of the bar
-    void PlayerDamage()
-    {
-        if (health > 0)
-        {
-            health = health - 1;
-            barFillAmount = barFillAmount - damage;
-            playerHealthBar.SetBarFillAmount(barFillAmount);
 
+    private void FindReferences()
+    {
+        // Find objects by tag
+        GameObject playerHealthObj = GameObject.FindGameObjectWithTag("PlayerHealth");
+        GameObject coinCounterObj = GameObject.FindGameObjectWithTag("CoinCounter");
+        GameObject uiManagerObj = GameObject.FindGameObjectWithTag("UIManager");
+
+        // Check if objects were found
+        if (playerHealthObj != null)
+        {
+            playerHealth = playerHealthObj.GetComponent<PlayerHealth>();
+        }
+        else
+        {
+            Debug.LogError("PlayerHealth object not found in the scene!");
+        }
+
+        if (coinCounterObj != null)
+        {
+            coinCounter = coinCounterObj.GetComponent<CoinCounter>();
+        }
+        else
+        {
+            Debug.LogError("CoinCounter object not found in the scene!");
+        }
+
+        if (uiManagerObj != null)
+        {
+            uiManager = uiManagerObj.GetComponent<UIManager>();
+        }
+        else
+        {
+            Debug.LogError("UIManager object not found in the scene!");
         }
     }
 }

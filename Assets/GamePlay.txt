@@ -1,0 +1,23 @@
+2.Diverse Enemies:
+Introduce a variety of enemy types with different behaviors, attack patterns, and strengths. This keeps the gameplay dynamic and requires players to adapt their strategies.
+3.Dynamic Environment:
+Create dynamic environments with obstacles, changing weather conditions, and destructible elements. This adds complexity to the gameplay and keeps players on their toes.
+4. Mission Objectives:
+Introduce mission objectives beyond simply shooting enemies. This could include rescuing hostages, escort missions, or destroying specific targets. Varied objectives add depth to the gameplay.
+
+Power UPS 
+1.Score Multiplier: Multiply the points earned for a certain duration, encouraging players to take risks for higher rewards.
+2.Temporary Invincibility: Make the player invulnerable to enemy attacks for a short period, allowing them to plow through 3.enemies without taking damage.
+4.Special Weapons: Introduce unique, limited-use weapons with powerful effects, such as homing missiles or area-of-effect bombs.
+5.Triggered Spawning: Spawn power-ups in response to specific player actions, such as defeating a certain number of enemies or reaching a particular score
+6.Visible Timer: Display a countdown timer or visual indicator to inform players of the remaining duration for active power-ups.
+
+Main Player
+1.Instantiate out side the screen and the mover from different angle and then go to the center of the screen and player play the game.
+
+On Game Complete
+1.Show Level Progress
+2.show total Coins to Collected
+3.Automatic go next level after the some time to wait
+
+If Player achived above 80% progress then give any gift; coin or health;

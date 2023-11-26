@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinCounter : MonoBehaviour
 {
     public Text coinCounterText;
-    public Text coinsText;
-    int coins=0;
-    void Update()
+    public int coins = 0;
+    public void AddCoins()
     {
-        coinCounterText.text=coins.ToString();
-        coinsText.text="Coins : "+coins.ToString();
+        coins+=1;
+        int savedCoins = LoadCoins();
+        savedCoins += 1;
+        SaveSystem.SaveCoin(savedCoins);
         
+        coinCounterText.text = coins.ToString();
     }
-    public void AddCoins(){
-        coins++;
+    public int LoadCoins()
+    {
+        CoinsData data = SaveSystem.LoadCoins();
+        return data.coins;
     }
     
-
 }

@@ -7,6 +7,10 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Coin
+  - PlayerHealth
+  - CoinCounter
+  - UIManager
+  - Enemy
   layers:
   - Default
   - TransparentFX
