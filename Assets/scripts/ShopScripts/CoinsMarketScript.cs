@@ -11,6 +11,7 @@ public class CoinsMarketScript : MonoBehaviour
     public GameData gameData;
     int coins;
     public GameObject warningPanel;
+    public Messages messagesScript;
     void OnEnable()
     {
         CoinsData data = SaveSystem.LoadCoins();
@@ -30,5 +31,6 @@ public class CoinsMarketScript : MonoBehaviour
         coins += 10;
         SaveSystem.SaveCoin(coins);
         CoinsDisplay();
+        messagesScript.GetCoinsSussesfully(10);
     }
 }

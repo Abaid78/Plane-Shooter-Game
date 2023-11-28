@@ -10,7 +10,7 @@ public class PlanePurchase : MonoBehaviour
     public Button equipBtn;
     public Image selectedBtnImg; // Image component for the selected state
     public Text equipBtnText;
-
+    public Messages messagesScript;
     // Private variables for internal use
     private int isPurchased = 0;
     private int coins;
@@ -66,11 +66,12 @@ public class PlanePurchase : MonoBehaviour
                 PlayerPrefs.Save();
 
                 Debug.Log(coinsData.coins);
-                Debug.Log("Plane Purchase");
+                messagesScript.SussesfullyPlanePerchase("MY JET", price);
             }
             else
             {
                 Debug.Log("Not enough coins for purchase");
+                messagesScript.PlanePerchaseFailure("MYJECT", coins, price);
             }
         }
     }
