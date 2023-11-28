@@ -54,12 +54,12 @@ public class UIController : MonoBehaviour
     public async void OpenShop()
     {
         shopPanel.SetActive(true);
-        await uiAnimations.FadeIn(shopPanelCG, animDuration);
+        await uiAnimations.FadeInAsync(shopPanelCG, animDuration);
     }
 
     public async void CloseShop()
     {
-        await uiAnimations.FadeOut(shopPanelCG, animDuration);
+        await uiAnimations.FadeOutAsync(shopPanelCG, animDuration);
         shopPanel.SetActive(false);
     }
 
@@ -83,69 +83,77 @@ public class UIController : MonoBehaviour
 
     private async void UpdateMarketDisplay()
     {
-        // Disable  markets
-        healthMarket.SetActive(false);
-        healthMarketCG.alpha = 0;
-        planeMarket.SetActive(false);
-        planeMarketCG.alpha = 0;
-        coinsMakret.SetActive(false);
-        coinsMarketCG.alpha = 0;
-        
+        // Disable markets
+        uiAnimations.FadeOut(healthMarketCG, animDuration);
+        uiAnimations.FadeOut(planeMarketCG, animDuration);
+        uiAnimations.FadeOut(coinsMarketCG, animDuration);
 
-        if (currentMarket == MarketType.HealthMarket)
+        // Enable and animate the selected market
+        switch (currentMarket)
         {
-            healthMarket.SetActive(true);
-            await uiAnimations.FadeIn(healthMarketCG, animDuration);
+            case MarketType.HealthMarket:
+                healthMarket.SetActive(true);
+                await uiAnimations.FadeInAsync(healthMarketCG, animDuration);
+                coinsMakret.SetActive(false);
+                planeMarket.SetActive(false);
+                break;
+
+            case MarketType.PlaneMarket:
+                planeMarket.SetActive(true);
+                await uiAnimations.FadeInAsync(planeMarketCG, animDuration);
+                healthMarket.SetActive(false);
+                coinsMakret.SetActive(false);
+                break;
+
+            case MarketType.CoinsMarket:
+                coinsMakret.SetActive(true);
+                await uiAnimations.FadeInAsync(coinsMarketCG, animDuration);
+                healthMarket.SetActive(false);
+                planeMarket.SetActive(false);
+                break;
         }
-        else if (currentMarket == MarketType.PlaneMarket)
+
+        // Change button colors
+        switch (currentMarket)
         {
-            planeMarket.SetActive(true);
-            await uiAnimations.FadeIn(planeMarketCG, animDuration);
-        }
-        else if (currentMarket == MarketType.CoinsMarket)
-        {
-            coinsMakret.SetActive(true);
-            await uiAnimations.FadeIn(coinsMarketCG, animDuration);
-        }
-        //Change buttons Colors
-        if (currentMarket == MarketType.PlaneMarket)
-        {
-            showPlaneMarketBtn.image.color = Color.cyan;
-        }
-        else if(currentMarket==MarketType.HealthMarket)
-        {
-            
-            showHealthMarketBtn.image.color = Color.cyan;
-        }
-        else if (currentMarket == MarketType.CoinsMarket)
-        {
-            showCoinsMarketBtn.image.color = Color.cyan;
+            case MarketType.PlaneMarket:
+                showPlaneMarketBtn.image.color = Color.cyan;
+                break;
+
+            case MarketType.HealthMarket:
+                showHealthMarketBtn.image.color = Color.cyan;
+                break;
+
+            case MarketType.CoinsMarket:
+                showCoinsMarketBtn.image.color = Color.cyan;
+                break;
         }
     }
+
 
     //Settings
     public async void OpenSettings()
     {
         settingPanel.gameObject.SetActive(true);
-        await uiAnimations.FadeIn(settingPanelCG, animDuration);
+        await uiAnimations.FadeInAsync(settingPanelCG, animDuration);
     }
 
     public async void CloseSettings()
     {
-        await uiAnimations.FadeOut(settingPanelCG, animDuration);
+        await uiAnimations.FadeOutAsync(settingPanelCG, animDuration);
         settingPanel.gameObject.SetActive(false);
     }
 
     public async void CloseLevelselections()
     {
-        await uiAnimations.FadeOut(levelSelectionCG, animDuration);
+        await uiAnimations.FadeOutAsync(levelSelectionCG, animDuration);
         levelSelections.SetActive(false);
     }
     //open level sellections
     public async void Play()
     {
         levelSelections.SetActive(true);
-        await uiAnimations.FadeIn(levelSelectionCG, animDuration);
+        await uiAnimations.FadeInAsync(levelSelectionCG, animDuration);
     }
 
     public void Quit()

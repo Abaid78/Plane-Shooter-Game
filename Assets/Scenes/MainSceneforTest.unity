@@ -1319,12 +1319,26 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!224 &191791647 stripped
+--- !u!224 &191791647
 RectTransform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4020825820109702040, guid: 0dd4eb44865b26443954a5e3baa0bcc5,
     type: 3}
   m_PrefabInstance: {fileID: 4020825820191064455}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142701463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 922625012}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &238116841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,10 +4387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f293a3d8fbbe7c41bfb6196d9b53249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 1
-  shopPanel: {fileID: 2030394255}
-  canvasGroup: {fileID: 528124182}
-  leanTweenType: 1
 --- !u!1 &750505750
 GameObject:
   m_ObjectHideFlags: 0
@@ -4835,9 +4845,8 @@ MonoBehaviour:
   selectionButtons:
   - {fileID: 799269624}
   - {fileID: 1361349902}
-  levelIndex: 0
-  progressSlider: {fileID: 0}
-  selectedImg: {fileID: 0}
+  levelProgressSliders: []
+  levelProgressSlidersText: []
 --- !u!1 &786150631
 GameObject:
   m_ObjectHideFlags: 0
@@ -4993,7 +5002,7 @@ RectTransform:
   m_Children:
   - {fileID: 2140643896}
   - {fileID: 2111042765}
-  - {fileID: 191791647}
+  - {fileID: 922625012}
   - {fileID: 807391079}
   m_Father: {fileID: 1266861639}
   m_RootOrder: 0
@@ -5763,6 +5772,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &922625011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4020825820191064455}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922625012}
+  m_Layer: 0
+  m_Name: Level Progress Slider1 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922625012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4020825820191064455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922625011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 191791647}
+  m_Father: {fileID: 799269620}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930148433
@@ -7626,16 +7666,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dc42054c55f884fbcda6e5cb69440f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainManuePanel: {fileID: 959826572}
   shopPanel: {fileID: 2030394255}
   settingPanel: {fileID: 279790726}
-  mainManuePanel: {fileID: 959826572}
   healthMarket: {fileID: 528124178}
   planeMarket: {fileID: 298335136}
   coinsMakret: {fileID: 397212705}
   levelSelections: {fileID: 781250266}
+  shopPanelCG: {fileID: 0}
+  settingPanelCG: {fileID: 0}
+  healthMarketCG: {fileID: 0}
+  planeMarketCG: {fileID: 0}
+  coinsMarketCG: {fileID: 0}
+  levelSelectionCG: {fileID: 0}
+  uiAnimations: {fileID: 0}
   showHealthMarketBtn: {fileID: 1489842753}
   showPlaneMarketBtn: {fileID: 764461950}
   showCoinsMarketBtn: {fileID: 994126341}
+  animDuration: 0.4
 --- !u!4 &1090216231
 Transform:
   m_ObjectHideFlags: 0
@@ -12339,7 +12387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2030394256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13680,6 +13728,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140643895}
   m_CullTransparentMesh: 0
+--- !u!1 &2142701463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4020825820191064455}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191791647}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &4020825820191064455
 PrefabInstance:
   m_ObjectHideFlags: 0

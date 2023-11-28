@@ -1,20 +1,50 @@
 ﻿using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
+using System.Threading;
 
 public class UIAnimations : MonoBehaviour
 {
-    public async Task FadeIn(CanvasGroup canvasGroup, float animDuration)
+    // Synchronous FadeIn and FadeOut
+    public void FadeIn(CanvasGroup canvasGroup, float animDuration)
     {
-        await canvasGroup.DOFade(1, animDuration).SetUpdate(true).AsyncWaitForCompletion();
+        canvasGroup.DOFade(1, animDuration).SetUpdate(true);
     }
 
-    public async Task FadeOut(CanvasGroup canvasGroup, float animDuration)
+    public void FadeOut(CanvasGroup canvasGroup, float animDuration)
     {
-        await canvasGroup.DOFade(0, animDuration).SetUpdate(true).AsyncWaitForCompletion();
+        canvasGroup.DOFade(0, animDuration).SetUpdate(true);
     }
 
-    public async Task FadeIn(CanvasGroup canvasGroup, float animDuration, float delayTime)
+    // Asynchronous FadeIn and FadeOut
+    public async Task FadeInAsync(CanvasGroup canvasGroup, float animDuration)
+    {
+        try
+        {
+            await canvasGroup.DOFade(1, animDuration).SetUpdate(true).AsyncWaitForCompletion();
+        }
+        catch (System.Exception ex)
+        {
+            // Handle exceptions if needed
+            Debug.LogError($"Error during FadeInAsync: {ex.Message}");
+        }
+    }
+
+    public async Task FadeOutAsync(CanvasGroup canvasGroup, float animDuration)
+    {
+        try
+        {
+            await canvasGroup.DOFade(0, animDuration).SetUpdate(true).AsyncWaitForCompletion();
+        }
+        catch (System.Exception ex)
+        {
+            // Handle exceptions if needed
+            Debug.LogError($"Error during FadeOutAsync: {ex.Message}");
+        }
+    }
+
+
+public async Task FadeIn(CanvasGroup canvasGroup, float animDuration, float delayTime)
     {
         await canvasGroup.DOFade(1, animDuration).SetUpdate(true).SetDelay(delayTime).AsyncWaitForCompletion();
     }

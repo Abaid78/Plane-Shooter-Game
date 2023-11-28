@@ -38,12 +38,12 @@ public class UIManager : MonoBehaviour
     public async void ShowOnPauseGame(){
         pauseMenu.SetActive(true);
         pauseButton.SetActive(false);
-        await uiAnimations.FadeIn(puaseMenuCG, animDurations);
+        await uiAnimations.FadeInAsync(puaseMenuCG, animDurations);
         Time.timeScale = 0;
     }
   
     public async void ShowOnResumeGame(){
-        await uiAnimations.FadeOut(puaseMenuCG, animDurations);
+        await uiAnimations.FadeOutAsync(puaseMenuCG, animDurations);
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
