@@ -248,7 +248,7 @@ MonoBehaviour:
   puaseMenuCG: {fileID: 282058232}
   gameOverPanelCG: {fileID: 1504454428}
   gameCompletePanelCG: {fileID: 347264518}
-  animDurations: 0.5
+  animDurations: 0.6
   gameOverAnimDuration: 0.8
   delayTime: 3
 --- !u!114 &47208438
@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 3178198476871247398, guid: 1ec5ff1b1750838df9c55f2b8ba3629b, type: 3}
-  totalEnemyToSpawn: 4
+  totalEnemyToSpawn: 1
   gameController: {fileID: 47208437}
 --- !u!1 &1142266919
 GameObject:
@@ -5016,7 +5016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wornImg: {fileID: 2145813213}
   totalHealthValue: 0
-  damage: 11
+  damage: 0
   currentHealth: 0
   powrUpBtnText: {fileID: 1142266921}
   barText: {fileID: 724849336}

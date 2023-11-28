@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DOTween.SetTweensCapacity(1000, 50);
         Time.timeScale = 1;
         endText.SetActive(false);
         pauseMenu.SetActive(false);
@@ -56,11 +58,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
     }
     public async void ShowOnLevelComplete(){
-        //yield return new WaitForSeconds(2f);
         endText.SetActive(true);
-        //yield return new WaitForSeconds(3f);
         gameCompletePanel.SetActive(true);
-        Time.timeScale=0f;
         await uiAnimations.FadeIn(gameCompletePanelCG, animDurations, delayTime);
+        Time.timeScale=0f;
     }
 }
