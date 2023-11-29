@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
 
     [Header("Canvas Groups")]
     public CanvasGroup shopPanelCG;
+
     public CanvasGroup settingPanelCG;
     public CanvasGroup healthMarketCG;
     public CanvasGroup planeMarketCG;
@@ -23,6 +24,7 @@ public class UIController : MonoBehaviour
 
     [Header("Other Components")]
     public UIAnimations uiAnimations;
+
     public Button showHealthMarketBtn;
     public Button showPlaneMarketBtn;
     public Button showCoinsMarketBtn;
@@ -39,7 +41,7 @@ public class UIController : MonoBehaviour
 
     private MarketType currentMarket;
 
-    private void OnEnable()
+    private void Start()
     {
         shopPanel.SetActive(false);
         settingPanel.gameObject.SetActive(false);
@@ -48,6 +50,7 @@ public class UIController : MonoBehaviour
         // Initialize the starting market
         currentMarket = MarketType.HealthMarket;
         UpdateMarketDisplay();
+        SetAlpha();
     }
 
     //Shop
@@ -130,7 +133,6 @@ public class UIController : MonoBehaviour
         }
     }
 
-
     //Settings
     public async void OpenSettings()
     {
@@ -149,6 +151,7 @@ public class UIController : MonoBehaviour
         await uiAnimations.FadeOutAsync(levelSelectionCG, animDuration);
         levelSelections.SetActive(false);
     }
+
     //open level sellections
     public async void Play()
     {
@@ -159,5 +162,12 @@ public class UIController : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void SetAlpha()
+    {
+        shopPanelCG.alpha = 0;
+        settingPanelCG.alpha = 0;     
+        levelSelectionCG.alpha = 0;
     }
 }
