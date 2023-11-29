@@ -32,6 +32,7 @@ public class Messages : MonoBehaviour
             Debug.LogError($"Assign the Title Text to the Field on the GameObject: {gameObject.name}");
         }
         ActiveMessagePanel();
+       
     }
 
     public void SucssesfullyPerchaseHealth()
@@ -58,7 +59,7 @@ public class Messages : MonoBehaviour
     public void FailToPerchaseHealth(int currentCoins, int healthCost)
     {
         string title = "Notification!";
-        messagePanelImag.color = failourColor;
+       
         string message = $"Insufficient Coins for Health Purchase\n\n" +
             $"Current Coins: <color=blue>{currentCoins}</color>\n" +
             $"Health Cost: <color=red>{healthCost}</color>\n" +
@@ -84,8 +85,8 @@ public class Messages : MonoBehaviour
     {
         string title = "Congratulations! 🎉";
 
-        string message = $" You've successfully purchased the <b><i>{planeName}</i></b>!\n\n" +
-            $"Coins Spent: <color=orange>{coinsSpent}</color>\n\n" +
+        string message = $" You've successfully purchased the <b><i>{planeName}</i></b>!\n" +
+            $"Coins Spent: <color=orange>{coinsSpent}</color>\n" +
             "Get ready to soar through the skies with your new <i>Super Jet</i>. Feel the thrill of high-speed adventures and conquer the skies!\n\n" +
             "Thank you for your purchase! We appreciate your support in making your gaming experience extraordinary.";
 
@@ -107,7 +108,7 @@ public class Messages : MonoBehaviour
 
     public void PlanePerchaseFailure(string planeName, int currentCoins, int planeCost)
     {
-        messagePanelImag.color = failourColor;
+     
         string title = "Transaction Failed!";
         string message = $"Insufficient Coins to Purchase the <b><i>{planeName}</i></b>.\n" +
             $"Current Coins: <color=green>{currentCoins}</color>\n" +

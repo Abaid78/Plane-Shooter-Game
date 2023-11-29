@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
     [Header("UI Panels")]
-
     public GameObject pauseMenu;
+
     public GameObject pauseButton;
     public GameObject gameOverPanel;
     public GameObject gameCompletePanel;
@@ -16,51 +15,77 @@ public class UIManager : MonoBehaviour
 
     [Header("CanvasGroups")]
     public CanvasGroup puaseMenuCG;
+
     public CanvasGroup gameOverPanelCG;
     public CanvasGroup gameCompletePanelCG;
 
     [Header("Animations Values")]
     public float animDurations = 0.5f;
+
     public float gameOverAnimDuration = 0.8f;
     public float delayTime = 3f;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        DOTween.SetTweensCapacity(1000, 50);
         Time.timeScale = 1;
+        DOTween.SetTweensCapacity(1000, 50);
         endText.SetActive(false);
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
         gameOverPanel.SetActive(false);
         gameCompletePanel.SetActive(false);
-
-
     }
-    public async void ShowOnPauseGame(){
+
+    public async void ShowOnPauseGame()
+    {
         pauseMenu.SetActive(true);
         pauseButton.SetActive(false);
         await uiAnimations.FadeInAsync(puaseMenuCG, animDurations);
         Time.timeScale = 0;
     }
-  
-    public async void ShowOnResumeGame(){
+
+    public async void ShowOnResumeGame()
+    {
         await uiAnimations.FadeOutAsync(puaseMenuCG, animDurations);
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
-       
     }
-    public async void ShowOnGameOver(){
+
+    public async void ShowOnGameOver()
+    {
         gameOverPanel.SetActive(true);
         pauseButton.SetActive(false);
-        await uiAnimations.FadeIn(gameOverPanelCG, gameOverAnimDuration, delayTime);
+        await uiAnimations.FadeInAsync(gameOverPanelCG, gameOverAnimDuration, delayTime);
         Time.timeScale = 0;
     }
-    public async void ShowOnLevelComplete(){
+
+    public IEnumerator ShowOnLevelComplete()
+    {
+        // Show endText after 2 seconds
+        yield return new WaitForSeconds(2f);
         endText.SetActive(true);
+
+        // Show gameCompletePanel after an additional 3 seconds
+        yield return new WaitForSeconds(4f);
+
+        // Pause the game (optional)
+        Time.timeScale = 0;
+
+        // Call LevelComplete method
+        LevelComplete();
+    }
+
+    private async void LevelComplete()
+    {
+        // Activate the gameCompletePanel
         gameCompletePanel.SetActive(true);
-        await uiAnimations.FadeIn(gameCompletePanelCG, animDurations, delayTime);
-        Time.timeScale=0f;
+
+        // Use async/await to wait for FadeInAsync to complete
+        await uiAnimations.FadeInAsync(gameCompletePanelCG, animDurations, delayTime);
+
+        // Kill all tweens
+        DOTween.KillAll(); //kill because animations is going to update method and it create error
     }
 }

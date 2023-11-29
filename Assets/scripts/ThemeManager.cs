@@ -16,6 +16,7 @@ public class ThemeManager : MonoBehaviour
    
     private void Start()
     {
+        
         // Load the selected theme from PlayerPrefs
         int savedTheme = PlayerPrefs.GetInt(THEME_KEY, 0);
         SetTheme(savedTheme);

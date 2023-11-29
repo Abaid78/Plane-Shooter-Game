@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class PurchaseHealth : MonoBehaviour
 {
-    int totalCoins;
+    public int totalCoins;
     public Text totalHealthText;
     public Messages messageScript;
-    public int getHealthAmount_1;
-    public int coinsPriceAmount_1;
+    public int getingHealth_1;
+    public int cost_1;
     public int getHealthAmount_2;
     public int coinsPriceAmount_2;
     public int getHealthAmount_3;
@@ -37,16 +37,16 @@ public class PurchaseHealth : MonoBehaviour
     }
     public void GetHealth_1()
     {
-        if (totalCoins >= coinsPriceAmount_1)
+        if (totalCoins >= cost_1)
         {
-            SaveAndLoadCoins(coinsPriceAmount_1);
-            SaveAddHealth(getHealthAmount_1);
+            SaveAndLoadCoins(cost_1);
+            SaveAddHealth(getingHealth_1);
             messageScript.SucssesfullyPerchaseHealth();
         }
         else
         {
-            Debug.Log(coinsPriceAmount_1-totalCoins+ " => MORE COINS TO GET HEALTH");
-            messageScript.FailToPerchaseHealth(totalCoins, getHealthAmount_1);
+            Debug.Log(cost_1-totalCoins+ " => MORE COINS TO GET HEALTH");
+            messageScript.FailToPerchaseHealth(totalCoins, cost_1);
         }
     }
     public void GetHealth_2()

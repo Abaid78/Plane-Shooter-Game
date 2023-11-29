@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,6 @@ public class GameManager : MonoBehaviour
     public void ReloadGame()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex); ;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }

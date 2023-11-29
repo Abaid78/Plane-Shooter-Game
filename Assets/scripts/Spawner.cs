@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] enemy;
     public float totalEnemyToSpawn = 10;
-    public UIManager gameController;
+    public UIManager uiManager;
     private bool lastEnemySpawned = false;
 
     // Start is called before the first frame update
@@ -19,7 +19,8 @@ public class Spawner : MonoBehaviour
     {
         if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null)
         {
-            gameController.ShowOnLevelComplete();
+            StartCoroutine(uiManager.ShowOnLevelComplete());
+           
         }
     }
 

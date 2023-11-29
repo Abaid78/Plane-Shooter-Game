@@ -3137,10 +3137,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22eea994adb1c04fafe2505d821e76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalCoins: 0
   totalHealthText: {fileID: 1010768939}
   messageScript: {fileID: 335708474}
-  getHealthAmount_1: 10
-  coinsPriceAmount_1: 13
+  getingHealth_1: 10
+  cost_1: 10
   getHealthAmount_2: 20
   coinsPriceAmount_2: 20
   getHealthAmount_3: 30
@@ -6586,7 +6587,7 @@ GameObject:
   - component: {fileID: 977532338}
   - component: {fileID: 977532339}
   m_Layer: 5
-  m_Name: Thems
+  m_Name: Thems_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7595,7 +7596,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1db97c042f9f58c4a86e49804a3d731e,
+      objectReference: {fileID: 21300000, guid: 9de4818e17cdf1c458981c280a7cd84b,
         type: 3}
     - target: {fileID: 7589165862705079745, guid: 98655cccd8bce6943a1b7c5dd0144af1,
         type: 3}
@@ -9338,6 +9339,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7589165862705079745, guid: 98655cccd8bce6943a1b7c5dd0144af1,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9de4818e17cdf1c458981c280a7cd84b,
+        type: 3}
     - target: {fileID: 7589165862705079745, guid: 98655cccd8bce6943a1b7c5dd0144af1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12192,7 +12199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeID: 0
-  price: 2147483647
+  price: 20
   priceText: {fileID: 2050751320}
   equipBtn: {fileID: 389205476}
   selectedBtnImg: {fileID: 1280308984}
@@ -13403,12 +13410,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeID: 1
-  price: 0
+  price: 30
   priceText: {fileID: 1090868097}
   equipBtn: {fileID: 1276905923}
   selectedBtnImg: {fileID: 1271043993}
   equipBtnText: {fileID: 1276905922}
-  messagesScript: {fileID: 0}
+  messagesScript: {fileID: 335708474}
 --- !u!114 &2105431825
 MonoBehaviour:
   m_ObjectHideFlags: 0

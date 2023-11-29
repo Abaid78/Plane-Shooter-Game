@@ -11,7 +11,7 @@ public class MissionSuccessful : MonoBehaviour
     public Slider levelProgressSlider;
     public Text sliderValueText;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         coinsText.text = "Collected Coins is: " + coinCounter.coins.ToString();
         levelProgressSlider.value = levelProgress.currentLevelProgress;

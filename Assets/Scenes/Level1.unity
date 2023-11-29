@@ -250,7 +250,7 @@ MonoBehaviour:
   gameCompletePanelCG: {fileID: 347264518}
   animDurations: 0.6
   gameOverAnimDuration: 0.8
-  delayTime: 3
+  delayTime: 1
 --- !u!114 &47208438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   enemy:
   - {fileID: 3178198476871247398, guid: 1ec5ff1b1750838df9c55f2b8ba3629b, type: 3}
   totalEnemyToSpawn: 1
-  gameController: {fileID: 47208437}
+  uiManager: {fileID: 47208437}
 --- !u!1 &1142266919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,6 +3822,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473448707}
   m_CullTransparentMesh: 0
+--- !u!1 &1482948346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482948347}
+  - component: {fileID: 1482948348}
+  m_Layer: 5
+  m_Name: ThemeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1482948347
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482948346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2107522708}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1482948348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482948346}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac284e074a0e7948becb6d334bd189e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeDropdown: {fileID: 0}
+  darkThemeColor: {r: 0, g: 0, b: 0, a: 0}
+  lightThemeColor: {r: 0, g: 0, b: 0, a: 0}
+  themeImages:
+  - {fileID: 347264515}
+  - {fileID: 282058229}
+  - {fileID: 1504454425}
+  themePanels: []
 --- !u!1 &1504454423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6339,6 +6395,7 @@ RectTransform:
   - {fileID: 282058228}
   - {fileID: 831496009}
   - {fileID: 930747256}
+  - {fileID: 1482948347}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
