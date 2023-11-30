@@ -1,37 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-public class ThemeManager : MonoBehaviour
-{
-   
-    public TMP_Dropdown themeDropdown;
-    public Image[] themeImages;
-    public GameObject[] themePanels;
 
+public class GetThemes : MonoBehaviour
+{
+    public Image[] themeImages;
+  
     private const string THEME_KEY = "SelectedTheme";
-   
+
     private void Start()
     {
-        
-        // Load the selected theme from PlayerPrefs
+        // Load the selected theme from PlayerPrefs Getting from ThemeManager
         int savedTheme = PlayerPrefs.GetInt(THEME_KEY, 0);
         SetTheme(savedTheme);
     }
 
     // This method will be called when the selected dropdown option changes
-    public void OnDropdownValueChanged()
-    {
-        // Get the currently selected option
-        int selectedTheme = themeDropdown.value;
-
-        // Save the selected theme to PlayerPrefs
-        PlayerPrefs.SetInt(THEME_KEY, selectedTheme);
-
-        // Set the theme
-        SetTheme(selectedTheme);
-    }
 
     private void SetTheme(int themeIndex)
     {
@@ -41,9 +24,10 @@ public class ThemeManager : MonoBehaviour
             case 0:
                 SetLightTheme();
                 break;
+
             case 1:
                 SetDarkTheme();
-                
+
                 break;
             // Add more cases for additional themes if needed
             default:
@@ -54,33 +38,18 @@ public class ThemeManager : MonoBehaviour
 
     private void SetLightTheme()
     {
-        themeDropdown.value = PlayerPrefs.GetInt(THEME_KEY);
         // Customize other elements for the light theme
         foreach (var image in themeImages)
         {
             image.color = Color.white;
         }
-
-        foreach (var panel in themePanels)
-        {
-            // Set properties for light theme panels
-            // For example: panel.GetComponent<Image>().color = Color.xxx;
-        }
     }
 
     private void SetDarkTheme()
     {
-
-        themeDropdown.value = PlayerPrefs.GetInt(THEME_KEY);
         foreach (var image in themeImages)
         {
             image.color = Color.gray;
-        }
-
-        foreach (var panel in themePanels)
-        {
-            // Set properties for dark theme panels
-            // For example: panel.GetComponent<Image>().color = Color.xxx;
         }
     }
 }

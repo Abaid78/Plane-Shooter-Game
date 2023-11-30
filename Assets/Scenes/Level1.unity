@@ -3833,7 +3833,7 @@ GameObject:
   - component: {fileID: 1482948347}
   - component: {fileID: 1482948348}
   m_Layer: 5
-  m_Name: ThemeManager
+  m_Name: GettingThems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3865,18 +3865,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482948346}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac284e074a0e7948becb6d334bd189e, type: 3}
+  m_Script: {fileID: 11500000, guid: b349dde31d49fa846836c22029539d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeDropdown: {fileID: 0}
-  darkThemeColor: {r: 0, g: 0, b: 0, a: 0}
-  lightThemeColor: {r: 0, g: 0, b: 0, a: 0}
   themeImages:
-  - {fileID: 347264515}
-  - {fileID: 282058229}
   - {fileID: 1504454425}
+  - {fileID: 282058229}
+  - {fileID: 347264515}
   themePanels: []
 --- !u!1 &1504454423
 GameObject:
