@@ -4,7 +4,7 @@ using UnityEngine;
 public class SelectedSprite : MonoBehaviour
 {
     public GameObject selectedImg; // Reference to the selected image GameObject
-    public SelectedSprite[] allSelectedSprites; // Array to store all instances of SelectedSprite
+     SelectedSprite[] allSelectedSprites; // Array to store all instances of SelectedSprite
     public int thisScriptIndex; // Index of this script instance
 
     // Start is called before the first frame update

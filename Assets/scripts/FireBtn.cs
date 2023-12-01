@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBtn : MonoBehaviour
 {
-    public Shooting shootingScript;
+    private Shooting shootingScript;
     public GameObject shootingBtn;
     bool isAutoFire;
 

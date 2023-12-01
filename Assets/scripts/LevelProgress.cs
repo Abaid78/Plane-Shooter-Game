@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.SceneManagement;
 [SerializeField]
 public class LevelProgress : MonoBehaviour
 {
@@ -8,6 +8,15 @@ public class LevelProgress : MonoBehaviour
     public float currentLevelProgress;   // Current progress of the level
     public int currentLevelIndex = 0;    // Index representing the current level; used for saving data across levels using PlayerPrefs
 
+    private void Start()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentLevelIndex != currentSceneIndex)
+        {
+            Debug.LogError("Set the currentLevelIndex according to the Scene Index: "+this.name);
+            
+        }
+    }
     // Function to calculate the level progress based on defeated enemies
     //Function run in EnemyScript
     public void CalculateLevelProgress()

@@ -28,4 +28,11 @@ public class GameManager : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
+    public void NextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextLevel = currentSceneIndex + 1;
+        PlayerPrefs.SetInt("LevelReached", nextLevel);
+        SceneManager.LoadScene(nextLevel);
+    }
 }
