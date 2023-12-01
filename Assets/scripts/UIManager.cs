@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
         pauseButton.SetActive(true);
         gameOverPanel.SetActive(false);
         gameCompletePanel.SetActive(false);
+        SetAlpha();
     }
 
     public async void ShowOnPauseGame()
@@ -87,5 +88,11 @@ public class UIManager : MonoBehaviour
 
         // Kill all tweens
         DOTween.KillAll(); //kill because animations is going to update method and it create error
+    }
+    void SetAlpha()
+    {
+        gameCompletePanelCG.alpha = 0;
+        gameOverPanelCG.alpha = 0;
+        puaseMenuCG.alpha = 0;
     }
 }

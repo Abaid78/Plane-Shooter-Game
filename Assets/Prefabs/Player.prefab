@@ -152,7 +152,7 @@ MonoBehaviour:
   spwonPoint2: {fileID: 6862254380828054654}
   flash: {fileID: 6862254380104176624}
   audioSource: {fileID: 5485818913120547329}
-  gameData: {fileID: 11400000, guid: 1f85183f09751b44ab2b9fa20b10613b, type: 2}
+  shootingBtn: {fileID: 0}
 --- !u!68 &5485818913120547331
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -6,11 +6,7 @@ public class BackgroundScroll : MonoBehaviour
 {
     public float speed=0.1f;
     public Renderer meshRanderer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frameor
     void Update()

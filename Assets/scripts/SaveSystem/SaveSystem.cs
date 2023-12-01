@@ -4,6 +4,31 @@ using UnityEngine;
 public class SaveSystem
 {
 
+    #region Save and And Load AutoFire 
+    public static void SaveAutoFire(bool autfire)
+    {
+        AutoFireData autoFireData = new AutoFireData(autfire);
+        string json = JsonUtility.ToJson(autoFireData);
+        string path = Application.persistentDataPath + "/AutoFire.json";
+        File.WriteAllText(path, json);
+    }
+    public static AutoFireData LoadAutoFire()
+    {
+        string path = Application.persistentDataPath + "/autoFire.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            AutoFireData loadFireData = JsonUtility.FromJson<AutoFireData>(json);
+            return loadFireData;
+        }
+        else
+        {
+            Debug.LogWarning("File is not exist " + path);
+            return null;
+        }
+
+    }
+    #endregion
     #region Coins Save and Load
     public static void SaveCoin(int coins)
     {

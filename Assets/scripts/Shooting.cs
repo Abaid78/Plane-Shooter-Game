@@ -9,18 +9,24 @@ public class Shooting : MonoBehaviour
     public GameObject spwonPoint2;
     public GameObject flash;
     public AudioSource audioSource;
-    public GameData gameData;
+    bool isAutoFire;
     void Start()
     {
-        PlayerPrefs.SetInt("AutoFire",1);
-        if (PlayerPrefs.GetInt("AutoFire")==1)
+        isAutoFire = LoadSToggleState();
+        if (isAutoFire)
         {
-            StartCoroutine(Shoot());
-            
+            StartCoroutine(Shoot(0.4f));
+
 
         }
+     
         flash.SetActive(false);
 
+    }
+    bool LoadSToggleState()
+    {
+        AutoFireData loadFireData = SaveSystem.LoadAutoFire();
+        return loadFireData.autoFire;
     }
     public void Fire()
     {
@@ -28,24 +34,31 @@ public class Shooting : MonoBehaviour
         Instantiate(bullet, spwonPoint2.transform.position, Quaternion.identity);
       
     }
-    public IEnumerator Shoot()
+    public IEnumerator Shoot( float time)
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(time);
             flash.SetActive(true);
             Fire();
             audioSource.Play();
             yield return new WaitForSeconds(0.07f);
             flash.SetActive(false);
         }
-    } public IEnumerator ButtonShoot()
-    {   
-            yield return new WaitForSeconds(0.1f);
+    } public IEnumerator Shoot1( float time)
+    {
+       
+            yield return new WaitForSeconds(time);
             flash.SetActive(true);
             Fire();
             audioSource.Play();
             yield return new WaitForSeconds(0.07f);
             flash.SetActive(false);
+        
+    } 
+    public void  ButtonShoot()
+    {
+        
+        StartCoroutine(Shoot1(0.1f));
     }
 }
