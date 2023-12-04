@@ -23,11 +23,10 @@ public class LevelProgress : MonoBehaviour
     {
         // Calculate the current level progress as a percentage
         currentLevelProgress = totalDefeatedEnemies / enemySpawner.totalEnemyToSpawn * 100;
-        Debug.Log(totalDefeatedEnemies + " total DefeatedEnmies");
 
-        if (currentLevelProgress > PlayerPrefs.GetFloat("Level_" + currentLevelIndex + "_Progress"))
+        if (currentLevelProgress >= PlayerPrefs.GetInt("Level_" + currentLevelIndex + "_Progress"))
         {
-            PlayerPrefs.SetFloat("Level_" + currentLevelIndex + "_Progress", currentLevelProgress);
+            PlayerPrefs.SetInt("Level_" + currentLevelIndex + "_Progress", (int)currentLevelProgress);
             // Save PlayerPrefs data immediately
             PlayerPrefs.Save();
         }

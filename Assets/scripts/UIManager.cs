@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     [Header("CanvasGroups")]
     public CanvasGroup puaseMenuCG;
-
+    public CanvasGroup pauseButtonCG;
     public CanvasGroup gameOverPanelCG;
     public CanvasGroup gameCompletePanelCG;
 
@@ -40,8 +40,9 @@ public class UIManager : MonoBehaviour
 
     public async void ShowOnPauseGame()
     {
-        pauseMenu.SetActive(true);
+        await uiAnimations.FadeOutAsync(pauseButtonCG, animDurations);
         pauseButton.SetActive(false);
+        pauseMenu.SetActive(true);
         await uiAnimations.FadeInAsync(puaseMenuCG, animDurations);
         Time.timeScale = 0;
     }
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
+        uiAnimations.FadeIn(pauseButtonCG, animDurations);
     }
 
     public async void ShowOnGameOver()

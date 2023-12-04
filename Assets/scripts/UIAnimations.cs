@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class UIAnimations : MonoBehaviour
+public class UIAnimations:MonoBehaviour
 {
- 
+    public static UIAnimations uiAnimations;
     // Synchronous FadeIn and FadeOut
     public void FadeIn(CanvasGroup canvasGroup, float animDuration)
     {
@@ -89,8 +89,7 @@ public class UIAnimations : MonoBehaviour
         }
     }
 
-   
-
+  
     public void Shake(RectTransform obj)
     {
         obj.DOShakePosition(0.5f, new Vector3(10, 10, 0), 10, 10, true)

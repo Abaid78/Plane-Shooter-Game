@@ -5,6 +5,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] enemy;
     public float totalEnemyToSpawn = 10;
+  
     public UIManager uiManager;
     private bool lastEnemySpawned = false;
 
@@ -20,7 +21,6 @@ public class Spawner : MonoBehaviour
         if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null)
         {
             StartCoroutine(uiManager.ShowOnLevelComplete());
-           
         }
     }
 
@@ -33,11 +33,13 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator EnemySpawner()
     {
-        for (int i = 0; i < totalEnemyToSpawn; i++)
+        for (int j = 0; j < totalEnemyToSpawn; j++)
         {
             yield return new WaitForSeconds(3);
             SpawnEnemy();
         }
+
+
         lastEnemySpawned = true;
     }
 }

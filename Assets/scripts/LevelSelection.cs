@@ -7,13 +7,13 @@ public class LevelSelection : MonoBehaviour
     public Button[] selectionButtons;
     public Slider[] levelProgressSliders;
     public Text[] levelProgressSlidersText;
-
+    public LevelLoader levelLoader;
     private void OnEnable()
     {
         int levelReached = PlayerPrefs.GetInt("LevelReached", 1);//use in level1..
         for (int i = 0; i < selectionButtons.Length; i++)
         {
-            levelProgressSliders[i].value = PlayerPrefs.GetFloat("Level_" + (i + 1) + "_Progress");
+            levelProgressSliders[i].value =PlayerPrefs.GetInt("Level_" + (i + 1) + "_Progress");
             levelProgressSlidersText[i].text = levelProgressSliders[i].value.ToString() + "%";
             Text unLockText = selectionButtons[i].GetComponentInChildren<Text>();
             if (i + 1 > levelReached)
@@ -37,6 +37,7 @@ public class LevelSelection : MonoBehaviour
     public void StartGame()
     {
         int index = PlayerPrefs.GetInt("LevelIndex", 1);
-        SceneManager.LoadScene(index);
+        levelLoader.LoadLevelWithNormalTimeScale(index);
+        //SceneManager.LoadScene(index);
     }
 }

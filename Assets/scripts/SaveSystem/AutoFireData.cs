@@ -2,7 +2,7 @@
 [System.Serializable]
 public class AutoFireData
 {
-    public bool autoFire;
+    public bool autoFire=true;
     //Create A Constructor 
     public  AutoFireData(bool autoFire )
     {

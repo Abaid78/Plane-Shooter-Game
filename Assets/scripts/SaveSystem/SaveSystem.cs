@@ -14,7 +14,7 @@ public class SaveSystem
     }
     public static AutoFireData LoadAutoFire()
     {
-        string path = Application.persistentDataPath + "/autoFire.json";
+        string path = Application.persistentDataPath + "/AutoFire.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -23,8 +23,12 @@ public class SaveSystem
         }
         else
         {
-            Debug.LogWarning("File is not exist " + path);
-            return null;
+
+           //create Defaul data file
+            SaveAutoFire(true);
+            return LoadAutoFire();
+            
+           
         }
 
     }

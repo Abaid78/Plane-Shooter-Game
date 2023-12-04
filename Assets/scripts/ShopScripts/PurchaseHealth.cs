@@ -19,12 +19,12 @@ public class PurchaseHealth : MonoBehaviour
         totalCoins = coinsData.coins;
         HealthYouHave();
     }
-    void SaveAddHealth(float amount)
+    void SaveAddHealth(int amount)
     {
         //use that Method otherwis loss all previous health and set a new getHealthAmount that is 0,2or3 and so ever; not use PlayerPrefs.SetFloat("Health", getHealthAmount_1);
-        float health = PlayerPrefs.GetFloat("Health");
+        int health = PlayerPrefs.GetInt("Health");
         health += amount;
-        PlayerPrefs.SetFloat("Health", health);
+        PlayerPrefs.SetInt("Health", health);
         PlayerPrefs.Save();
         HealthYouHave();
     }
@@ -78,7 +78,7 @@ public class PurchaseHealth : MonoBehaviour
     //Show total Health also update UI
     public void HealthYouHave()
     {
-        float health = PlayerPrefs.GetFloat("Health");
+        float health = PlayerPrefs.GetInt("Health",0);
         totalHealthText.text = "Health You Have "+health.ToString();
     }
 }

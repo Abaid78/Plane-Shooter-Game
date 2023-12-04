@@ -9,11 +9,20 @@ public class PauseManu : MonoBehaviour
     public Text healthText;
     public CoinCounter coinsCounter;
     public PlayerHealth playerHealth;
+    public Slider levelProgressSlider;
+    public Text sliderValueText;
+    public LevelProgress levelProgress;
     // Start is called before the first frame update
     void OnEnable()
     {
         coinsText.text = "Collected Coins is: "+coinsCounter.coins.ToString();
         healthText.text = "Health You Have: "+playerHealth.currentHealth.ToString();
-       
+        LevelProgress();
     }
+    void LevelProgress()
+    {
+        levelProgressSlider.value = (int)levelProgress.currentLevelProgress;
+        sliderValueText.text = levelProgressSlider.value.ToString() + "%";
+    }
+   
 }

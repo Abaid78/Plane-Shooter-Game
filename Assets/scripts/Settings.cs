@@ -10,7 +10,10 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         InitializeAutoFireToggle();
+        
+       
     }
 
     #region AutoFire Settings
@@ -40,3 +43,4 @@ public class Settings : MonoBehaviour
 
     #endregion
 }
+

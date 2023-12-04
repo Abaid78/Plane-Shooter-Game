@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 public class ThemeManager : MonoBehaviour
 {
    
-    public TMP_Dropdown themeDropdown;
+    public Dropdown themeDropdown;
     public Image[] themeImages;
     public GameObject[] themePanels;
 

@@ -5,31 +5,32 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameObject wornImg;
-    float maxHealth = 100f;
-    public float totalHealthValue;
-    public float damage = 10;
-    public float currentHealth;
-    float barFillAmount = 1f;
+    public GameObject enoughHealthImg;
+    public Animator enoughHealthAnimator;
+    public UIAnimations uiAnimations;
+    private int maxHealth = 100;
+     int savedHealth;
+    public int damage = 10;
+    public int currentHealth;
+    public Slider HealthSlider;
     public Text powrUpBtnText;
     public Text barText;
     bool isPressed = false;
-    public RectTransform rectTransform;
-    public Image bar;
     //Set Image (bar) fill Amount
-    public void SetBarFillAmount(float amount)
+    public void SetBarFillAmount(int amount)
     {
-        bar.fillAmount = amount;
+        HealthSlider.value = amount;
     }
     void Start()
     {
-       
-        totalHealthValue = PlayerPrefs.GetFloat("Health");
-        Debug.Log(totalHealthValue + "totalhealth");
+
+        savedHealth = PlayerPrefs.GetInt("Health");
+        Debug.Log(savedHealth + "totalhealth");
         currentHealth = maxHealth;
-        powrUpBtnText.text = Mathf.Round(totalHealthValue).ToString();
+        powrUpBtnText.text = Mathf.Round(savedHealth).ToString();
         barText.text = currentHealth.ToString();
-        wornImg.SetActive(false);
+        enoughHealthImg.SetActive(false);
+
     }
     void Update()
     {
@@ -40,41 +41,39 @@ public class PlayerHealth : MonoBehaviour
     }
     public void PowerUP()
     {
-        if (currentHealth > 0 && currentHealth < maxHealth &&  totalHealthValue>= 0)
+        if (currentHealth > 0 && currentHealth < maxHealth && savedHealth >= 0)
         {
-            currentHealth = currentHealth + 1 * Time.deltaTime * 5f;
-            barText.text = Mathf.Round(currentHealth).ToString();
-            totalHealthValue = totalHealthValue - 1 * Time.deltaTime * 5f;
-            powrUpBtnText.text = Mathf.Round(totalHealthValue).ToString();
-            barFillAmount = currentHealth / maxHealth;
-            SetBarFillAmount(barFillAmount);
-            PlayerPrefs.SetFloat("Health", totalHealthValue);
+            float currentHealth_float = (float)currentHealth;
+            currentHealth_float +=1 * Time.deltaTime * 5f;
+            currentHealth = (int)currentHealth_float;
+            barText.text = currentHealth.ToString();
+            float savedHealth_float = (float)savedHealth;
+            savedHealth_float-= 1 * Time.deltaTime * 5f;
+            savedHealth = (int)savedHealth_float;
+            powrUpBtnText.text = savedHealth.ToString();
+            SetBarFillAmount(currentHealth);
+            PlayerPrefs.SetFloat("Health", savedHealth);
             PlayerPrefs.Save();
-
+            
         }
-        if (totalHealthValue <= 0)
+        if (savedHealth <= 0)
         {
-            wornImg.SetActive(true);
-            StartCoroutine(RemoveWoringImg());
-
+            enoughHealthImg.SetActive(true);
+            enoughHealthAnimator.SetTrigger("EnoughtHealthMsg");
+            
         }
 
 
 
-    }
-    IEnumerator RemoveWoringImg()
-    {
-        yield return new WaitForSeconds(6);
-        wornImg.SetActive(false);
     }
     public void PlayerDamage()
     {
-        if (currentHealth > 0)
+        if (currentHealth >= 0)
         {
             currentHealth -= damage;
-            barFillAmount = currentHealth / maxHealth; // Calculate the fill amount
-            SetBarFillAmount(barFillAmount);
-            barText.text = currentHealth.ToString();
+            SetBarFillAmount(currentHealth);
+           
+            barText.text = Mathf.Clamp(currentHealth, 0, Mathf.Infinity).ToString();
 
         }
     }
