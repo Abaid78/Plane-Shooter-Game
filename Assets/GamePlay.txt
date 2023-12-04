@@ -20,4 +20,4 @@ On Game Complete
 2.show total Coins to Collected
 3.Automatic go next level after the some time to wait
 
-If Player achived above 80% progress then give any gift; coin or health;
+If Player achived above 80% progress then give any gift; coin or health,"Unlock the next level of success by making 90% progress and earning health coins – a testament to your dedication and skill in the game.";

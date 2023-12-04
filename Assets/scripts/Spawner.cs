@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(EnemySpawner());
+        Debug.Log(Screen.width);
     }
 
     // Update is called once per frame
