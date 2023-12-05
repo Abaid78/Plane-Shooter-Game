@@ -2824,7 +2824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 3178198476871247398, guid: 1ec5ff1b1750838df9c55f2b8ba3629b, type: 3}
-  totalEnemyToSpawn: 2
+  totalEnemyToSpawn: 5
   uiManager: {fileID: 47208437}
 --- !u!1 &1142266919
 GameObject:
