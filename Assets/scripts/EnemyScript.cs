@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject enemyFlash;
     public GameObject damageVFXPrefab;
     public GameObject enemyExplosionPrefab;
+    public GameObject flames;
 
     public GameObject coinPrefab;
     public Healthbar healthbar;
@@ -18,9 +19,9 @@ public class EnemyScript : MonoBehaviour
     public AudioClip explosionSound;
     public AudioSource audioSource;
     public float shootTime = 1f;
-    private float health = 10f;
-    private float barSize = 1f;
-    private float damage;
+    private float health = 100f;
+    private float barSize;
+    public float damageRate =33;
     private bool isDefeated = false;
 
     // Start is called before the first frame update
@@ -28,8 +29,9 @@ public class EnemyScript : MonoBehaviour
     {
         levelProgress = GameObject.Find("LevelProgress").GetComponent<LevelProgress>();
         StartCoroutine(EnemyShooting());
+        
         enemyFlash.SetActive(false);
-        damage = barSize / health;
+        flames.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,11 +45,12 @@ public class EnemyScript : MonoBehaviour
     {
         if (health > 0)
         {
-            health -= 1;
-            barSize = barSize - damage;
+            health -= damageRate;
+            barSize =health;
             healthbar.SetBarSize(barSize);
         }
-    }
+        Debug.Log("Health: " + health);
+       }
 
     private void EnemyFire()
     {
@@ -59,7 +62,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (isDefeated)
         {
-            levelProgress.totalDefeatedEnemies++;
+            levelProgress.TotalDefeatedEnemies++;
             levelProgress.CalculateLevelProgress();
         }
     }
@@ -96,6 +99,10 @@ public class EnemyScript : MonoBehaviour
                 Destroy(enemyExplosion, 0.25f);
 
                 Destroy(gameObject);
+            }
+            if (health <= 20)
+            {
+                flames.SetActive(true);
             }
         }
     }

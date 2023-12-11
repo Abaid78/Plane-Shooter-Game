@@ -25,7 +25,6 @@ public class PlayerHealth : MonoBehaviour
     {
 
         savedHealth = PlayerPrefs.GetInt("Health");
-        Debug.Log(savedHealth + "totalhealth");
         currentHealth = maxHealth;
         powrUpBtnText.text = Mathf.Round(savedHealth).ToString();
         barText.text = currentHealth.ToString();

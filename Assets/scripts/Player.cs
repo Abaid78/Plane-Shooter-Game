@@ -58,11 +58,9 @@ public class Player : MonoBehaviour
 
             if (touch.phase == TouchPhase.Moved)
             {
-                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                {
                     Vector2 newPos = Camera.main.ScreenToWorldPoint(touch.position);
                     transform.position = Vector2.Lerp(transform.position, newPos, 10 * Time.deltaTime);
-                }
+               
             }
         }
 

@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
 {
     private void Start()
     {
-        var a = transform.position.x;
+       
     }
 
 }

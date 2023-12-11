@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlaneSelectionScript : MonoBehaviour
 {
     public GameObject[] planePrefabs;
-    public int selectedPlane;
+    int selectedPlane;
     private void Start()
     {
-        selectedPlane = PlayerPrefs.GetInt("SelectedPlane",-1);
+        selectedPlane = PlayerPrefs.GetInt("SelectedPlane",0);
         if (selectedPlane >= 0)
         {
             Instantiate(planePrefabs[selectedPlane], transform.position, transform.rotation);

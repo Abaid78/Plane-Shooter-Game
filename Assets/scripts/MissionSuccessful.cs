@@ -14,7 +14,7 @@ public class MissionSuccessful : MonoBehaviour
     void OnEnable()
     {
         coinsText.text = "Collected Coins is: " + coinCounter.coins.ToString();
-        levelProgressSlider.value = (int)levelProgress.currentLevelProgress;
+        levelProgressSlider.value = (int)levelProgress.CurrentLevelProgress;
         sliderValueText.text = levelProgressSlider.value.ToString() + "%";
 
     }

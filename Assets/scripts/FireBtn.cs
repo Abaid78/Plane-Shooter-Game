@@ -11,7 +11,7 @@ public class FireBtn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("I am FireBtn.cs");
+       
         StartCoroutine(FindScriptAndInitialize());
     }
 

@@ -69,7 +69,7 @@ public class WayPointsFollower : MonoBehaviour
     void HandleAllWaypointsReached()
     {
         // All waypoints reached, you might want to reset or loop through waypoints
-        Debug.Log("All waypoints reached!");
+      
         SetTarget(null);
     }
 

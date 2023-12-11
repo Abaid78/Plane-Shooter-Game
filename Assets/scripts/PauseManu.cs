@@ -21,7 +21,7 @@ public class PauseManu : MonoBehaviour
     }
     void LevelProgress()
     {
-        levelProgressSlider.value = (int)levelProgress.currentLevelProgress;
+        levelProgressSlider.value = (int)levelProgress.CurrentLevelProgress;
         sliderValueText.text = levelProgressSlider.value.ToString() + "%";
     }
    
