@@ -100,7 +100,7 @@ public class EnemyScript : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            if (health <= 20)
+            if (health <= 40)
             {
                 flames.SetActive(true);
             }
